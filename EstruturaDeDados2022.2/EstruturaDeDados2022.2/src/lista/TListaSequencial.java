@@ -130,12 +130,12 @@ public class TListaSequencial implements TLista {
 
 		try {
 			for(int i = 0;i < quantidade;i++){
+				if(Objects.isNull(array[i]))
+					continue;
 				if(array[i] == e){
 					removerIndice(i+1);
 					return;
 				}
-				if(!Objects.isNull(array[i]))
-				continue;
 			}
 		} catch (NaoHaElementosException | IndiceInexistenteException e1) {
 			System.out.println(e1.getMessage());
