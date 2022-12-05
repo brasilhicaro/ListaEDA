@@ -123,23 +123,20 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
-		int indice = indice(e);
-		boolean achou = false;
-		
 		if(isVazia())
 			throw new NaoHaElementosException();		
+		if(!existe(e))
+			throw new ElementoInexistenteException();
 
 		try {
-			for(int i = 0;i < tamanho();i++){
+			for(int i = 0;i < quantidade;i++){
 				if(array[i] == e){
-					removerIndice(indice);
-					achou = true;
+					removerIndice(i+1);
 					return;
 				}
-				else{continue;}
+				if(!Objects.isNull(array[i]))
+				continue;
 			}
-		if(!achou)
-			throw new ElementoInexistenteException();
 		} catch (NaoHaElementosException | IndiceInexistenteException e1) {
 			System.out.println(e1.getMessage());
 		}

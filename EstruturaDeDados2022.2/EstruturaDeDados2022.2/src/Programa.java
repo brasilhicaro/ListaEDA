@@ -16,7 +16,7 @@ public class Programa {
 		lista.addInicio(50);
 		lista.imprimir();
 		System.out.println(lista.tamanho());
-		lista.removerIndice(5);
+		lista.removerElemento(80);
 		lista.imprimir();
 	} catch (Exception e) {
 		System.out.println(e.getMessage());
