@@ -74,7 +74,24 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public int removerInicio() throws NaoHaElementosException {
-		return 0;
+		if(isVazia())
+			throw new NaoHaElementosException();
+		boolean umNumero = quantidade == 1;
+		int lixo = 0;
+		if(!umNumero){
+			lixo = array[0];
+			for(int i = 1;i <= quantidade-1 ;i++){
+				array[i-1] = array[i] ;
+			}	
+		}
+		else{
+			lixo= array[0];
+			quantidade--;
+			return lixo;
+		}
+
+		quantidade--;
+		return lixo;
 	}
 
 	/**
@@ -89,7 +106,6 @@ public class TListaSequencial implements TLista {
 	 */
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
 		int indice = indice(e);
-
 		try {
 			removerIndice(indice);
 		} catch (NaoHaElementosException | IndiceInexistenteException e1) {
@@ -132,7 +148,7 @@ public class TListaSequencial implements TLista {
 	}
 
 	public void imprimir() {
-		System.out.print("Início -> ");
+		System.out.print("Inï¿½cio -> ");
 		for (int i = 0; i < quantidade; i++)
 			System.out.print(array[i] + " -> ");
 		System.out.println("Fim");
