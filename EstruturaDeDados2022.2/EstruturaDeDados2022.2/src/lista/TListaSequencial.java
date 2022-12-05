@@ -76,18 +76,17 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public int removerInicio() throws NaoHaElementosException {
-		if(isVazia())
+		if (isVazia())
 			throw new NaoHaElementosException();
 		boolean umNumero = quantidade == 1;
 		int lixo = 0;
-		if(!umNumero){
+		if (!umNumero) {
 			lixo = array[0];
-			for(int i = 1;i <= quantidade-1 ;i++){
-				array[i-1] = array[i] ;
-			}	
-		}
-		else{
-			lixo= array[0];
+			for (int i = 1; i <= quantidade - 1; i++) {
+				array[i - 1] = array[i];
+			}
+		} else {
+			lixo = array[0];
 			quantidade--;
 			return lixo;
 		}
@@ -100,20 +99,20 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public int removerIndice(int i) throws NaoHaElementosException, IndiceInexistenteException {
-		if(quantidade < i || i <= 0 )
+		if (quantidade < i || i <= 0)
 			throw new IndiceInexistenteException();
-		else if(Objects.isNull(array[i]) || isVazia())
+		else if (Objects.isNull(array[i]) || isVazia())
 			throw new NaoHaElementosException();
-		
-		if(quantidade == i ){
+
+		if (quantidade == i) {
 			int lixo = array[i];
 			--quantidade;
 			return lixo;
 
 		}
 		int lixo = array[i];
-		for(int cont = i-1;cont < quantidade ;cont++){
-			array[cont] = array[cont+1];
+		for (int cont = i - 1; cont < quantidade; cont++) {
+			array[cont] = array[cont + 1];
 		}
 		--quantidade;
 		return lixo;
@@ -123,17 +122,17 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
-		if(isVazia())
-			throw new NaoHaElementosException();		
-		if(!existe(e))
+		if (isVazia())
+			throw new NaoHaElementosException();
+		if (!existe(e))
 			throw new ElementoInexistenteException();
 
 		try {
-			for(int i = 0;i < quantidade;i++){
-				if(Objects.isNull(array[i]))
+			for (int i = 0; i < quantidade; i++) {
+				if (Objects.isNull(array[i]))
 					continue;
-				if(array[i] == e){
-					removerIndice(i+1);
+				if (array[i] == e) {
+					removerIndice(i + 1);
 					return;
 				}
 			}
@@ -155,7 +154,13 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public int indice(int e) throws ElementoInexistenteException {
-		return 0;
+
+		for (int i = 0; i < quantidade; i++) {
+			if (array[i] == e)
+				return i+1;
+		}
+		throw new ElementoInexistenteException();
+
 	}
 
 	public int elemento(int i) throws IndiceInexistenteException {
