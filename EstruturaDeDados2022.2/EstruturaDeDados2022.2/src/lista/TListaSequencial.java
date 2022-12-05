@@ -1,5 +1,7 @@
 package lista;
 
+import java.util.Objects;
+
 import util.ElementoInexistenteException;
 import util.IndiceInexistenteException;
 import util.NaoHaElementosException;
@@ -98,7 +100,23 @@ public class TListaSequencial implements TLista {
 	 * @author alunos
 	 */
 	public int removerIndice(int i) throws NaoHaElementosException, IndiceInexistenteException {
-		return 0;
+		if(quantidade < i || i <= 0 )
+			throw new IndiceInexistenteException();
+		else if(Objects.isNull(array[i]) || isVazia())
+			throw new NaoHaElementosException();
+		
+		if(quantidade == i ){
+			int lixo = array[i];
+			--quantidade;
+			return lixo;
+
+		}
+		int lixo = array[i];
+		for(int cont = i-1;cont < quantidade ;cont++){
+			array[cont] = array[cont+1];
+		}
+		--quantidade;
+		return lixo;
 	}
 
 	/**
@@ -106,9 +124,24 @@ public class TListaSequencial implements TLista {
 	 */
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
 		int indice = indice(e);
+		boolean achou = false;
+		
+		if(isVazia())
+			throw new NaoHaElementosException();		
+
 		try {
-			removerIndice(indice);
+			for(int i = 0;i < tamanho();i++){
+				if(array[i] == e){
+					removerIndice(indice);
+					achou = true;
+					return;
+				}
+				else{continue;}
+			}
+		if(!achou)
+			throw new ElementoInexistenteException();
 		} catch (NaoHaElementosException | IndiceInexistenteException e1) {
+			System.out.println(e1.getMessage());
 		}
 	}
 
