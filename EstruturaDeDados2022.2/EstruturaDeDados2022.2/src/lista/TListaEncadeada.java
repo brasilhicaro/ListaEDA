@@ -1,5 +1,7 @@
 package lista;
 
+import java.util.Objects;
+
 import util.ElementoInexistenteException;
 import util.IndiceInexistenteException;
 import util.NaoHaElementosException;
@@ -99,8 +101,28 @@ public class TListaEncadeada implements TLista{
 	 * @author alunos
 	 */
 	public int removerIndice(int i) throws NaoHaElementosException, IndiceInexistenteException {
-		return 0;
-	}
+		if(i<0)
+			throw new IndiceInexistenteException();
+
+
+		No anterior = null;
+        No no = inicio;
+        int cont = 0;
+        while(no !=null){
+            if(cont==i){
+                anterior.proximo=no.proximo;
+				System.out.println ("contador= "+cont+" indice que quero chegar "+i);
+				System.out.println("cheguei no elemento "+no.dado+"de posiÃ§Ã£o"+cont+"ele Ã© o elemento certo e vou fazer a troca");
+				return no.dado;
+            }else{
+                anterior=no;
+                no=no.proximo;
+                cont++;
+				System.out.println("contador= "+cont+" indice que quero chegar "+i);
+			}
+        }
+		throw new NaoHaElementosException();
+	}	
 
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
 		
@@ -113,9 +135,9 @@ public class TListaEncadeada implements TLista{
 		
 		while (auxiliar != null) {
 			if (auxiliar.dado == e) {
-				if (anterior == null) {//remoção no início
+				if (anterior == null) {//remoï¿½ï¿½o no inï¿½cio
 					inicio = inicio.proximo;
-				} else {//remoção no meio ou no fim
+				} else {//remoï¿½ï¿½o no meio ou no fim
 					anterior.proximo = auxiliar.proximo;
 				}
 				auxiliar.proximo = null;
@@ -139,7 +161,18 @@ public class TListaEncadeada implements TLista{
 	 * @author alunos
 	 */
 	public int indice(int e) throws ElementoInexistenteException {
-		return 0;
+		No novo = new No(e);
+
+		No aux = inicio;
+		int cont = 0;
+		while(!Objects.isNull(aux)){
+			if(aux.dado == novo.dado){
+				return cont+1;
+			}
+			aux = aux.proximo;
+			cont++;
+		}
+		throw new ElementoInexistenteException();
 	}
 
 	
@@ -185,9 +218,12 @@ public class TListaEncadeada implements TLista{
 
 	public void imprimir() {
 		No auxiliar = inicio;
-		System.out.print("Início -> ");
-		while (auxiliar != null) {
-			System.out.print(auxiliar.dado + " -> ");
+		System.out.print("Inï¿½cio -> ");
+		for(int i = 0;tamanho()-1 >= i;i++) {
+			if(auxiliar != null){
+				System.out.print(auxiliar.dado + " -> ");
+				auxiliar = auxiliar.proximo;
+			}
 		}
 		System.out.println("Fim");
 	}

@@ -6,7 +6,7 @@ import util.NaoHaEspacosVaziosException;
 public class Programa {
 
 	public static void main(String[] args) throws Exception {
-		TLista lista = new TListaSequencial(10);
+		TLista lista = new TListaEncadeada();
 		try {
 
 			lista.addFinal(10);
@@ -15,8 +15,7 @@ public class Programa {
 			lista.imprimir();
 			lista.addInicio(50);
 			lista.imprimir();
-			System.out.println(lista.indice(20));
-			lista.removerElemento(80);
+			System.out.println(lista.removerIndice(3));
 			lista.imprimir();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
