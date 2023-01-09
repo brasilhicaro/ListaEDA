@@ -36,9 +36,6 @@ public class TListaSequencial implements TLista {
 		quantidade++;
 	}
 
-	/**
-	 * @author alunos
-	 */
 	public void addIndice(int e, int i) throws NaoHaEspacosVaziosException, IndiceInexistenteException {
 		int tamanho = this.array.length;
 
@@ -72,9 +69,6 @@ public class TListaSequencial implements TLista {
 		return lixo;
 	}
 
-	/**
-	 * @author alunos
-	 */
 	public int removerInicio() throws NaoHaElementosException {
 		if (isVazia())
 			throw new NaoHaElementosException();
@@ -95,9 +89,6 @@ public class TListaSequencial implements TLista {
 		return lixo;
 	}
 
-	/**
-	 * @author alunos
-	 */
 	public int removerIndice(int i) throws NaoHaElementosException, IndiceInexistenteException {
 		if (quantidade < i || i <= 0)
 			throw new IndiceInexistenteException();
@@ -118,9 +109,6 @@ public class TListaSequencial implements TLista {
 		return lixo;
 	}
 
-	/**
-	 * @author alunos
-	 */
 	public void removerElemento(int e) throws NaoHaElementosException, ElementoInexistenteException {
 		if (isVazia())
 			throw new NaoHaElementosException();
@@ -150,9 +138,6 @@ public class TListaSequencial implements TLista {
 		return false;
 	}
 
-	/**
-	 * @author alunos
-	 */
 	public int indice(int e) throws ElementoInexistenteException {
 
 		for (int i = 0; i < quantidade; i++) {
